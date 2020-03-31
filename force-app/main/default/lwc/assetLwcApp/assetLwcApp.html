@@ -1,0 +1,42 @@
+<template>
+   
+        <div class="slds-box slds-theme_default">
+            <lightning-radio-group padding="around-small" name="appOptionsGroup" label="App Option" options={appOptions}
+                value={appOption} onchange={handleAppOptionChange} type="button" variant="label-hidden">
+            </lightning-radio-group>
+        </div>
+        <template if:true={viewAssetProject}>
+                <c-asset-project-board></c-asset-project-board>
+        </template>
+        <template if:true={viewAssetCode}>
+            <div class="c-container">
+                <lightning-layout multiple-rows="true">
+
+                    <lightning-layout-item padding="horizontal-small" size="12">
+                        <lightning-layout>
+                            <lightning-layout-item padding="around-small" size="2">
+                                <div class="slds-box slds-theme_default">
+                                    <c-asset-language-list onselectlanguage={handleSelectLanguage}>
+                                    </c-asset-language-list>
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item padding="around-small" size="3">
+                                <div class="slds-box slds-theme_default">
+                                    <c-asset-topic-list onselecttopic={handleSelectTopic} language-id={languageId}>
+                                    </c-asset-topic-list>
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item padding="around-small" size="7">
+                                <div class="slds-box slds-theme_default">
+                                    <c-asset-topic-content onchangetopictitle={handleChangeTopicTitle}
+                                        record-id={topicId}>
+                                    </c-asset-topic-content>
+                                </div>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </lightning-layout-item>
+
+                </lightning-layout>
+            </div>
+        </template>
+</template>

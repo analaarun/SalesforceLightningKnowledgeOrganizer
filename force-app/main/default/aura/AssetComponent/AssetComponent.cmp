@@ -1,0 +1,92 @@
+<aura:component implements="flexipage:availableForRecordHome,force:lightningQuickActionWithoutHeader,force:hasRecordId,force:appHostable" controller="AssetController">
+	<aura:attribute name="mydata" type="Object"/>
+		<aura:attribute name="mycolumns" type="List"/>
+		<aura:attribute name="topicData" type="Object"/>
+		<aura:attribute name="topicColumns" type="List"/>
+		<aura:attribute name="languageIdList" type="List"/>
+		<aura:attribute name="searchTitleByString" type="String" default=""/>
+		<aura:attribute name="searchLanguageByString" type="String" default=""/>
+		<aura:attribute name="lastSelectedTopicTitle" type="String" default=""/>
+		<aura:attribute name="showRecordSavingIcon" type="Integer"  />
+		<aura:attribute name="showRecordErrorIcon" type="Integer"  />
+		<aura:attribute name="topicDescription" type="String" default=""/>
+		<aura:attribute name="newTopic" type="Object"/>
+    	<aura:attribute name="simpleNewTopic" type="Object"/>
+    	<aura:attribute name="newTopicError" type="String"/>
+    	<force:recordData aura:id="topicRecordHandler"
+    				  recordId="" 
+                      layoutType="FULL"
+                      fields="Id,Description__c"
+                      targetRecord="{!v.newTopic}"
+                      targetFields="{!v.simpleNewTopic}"
+                      targetError="{!v.newTopicError}"
+                      mode="EDIT"
+					  recordUpdated="{!c.handleTopicRecordUpdated}" />
+			<aura:handler name="init" value="{! this }" action="{! c.init }"/>
+			<aura:handler name="change" value="{!v.searchTitleByString}" action="{!c.searchTopic}"/>
+			<aura:handler name="change" value="{!v.searchLanguageByString}" action="{!c.searchLanguageByName}"/>
+			<aura:handler name="change" value="{!v.simpleNewTopic.Description__c}" action="{!c.handleTopicSaveRecord}"/>
+			<aura:handler event="force:navigateToSObject" action="{!c.navigateToRecord}"/>
+				<div class="slds-grid slds-gutters slds-grid_align-center">
+					<div class="slds-col slds-size_3-of-12">
+						<div class="slds-box">
+							<!-- <lightning:input name="input" aura:id="searchLanguage" value="" label="Enter search string" onblur="{!c.searchLanguageByName }" /> -->
+							<ui:inputText aura:id="searchLanguage" value="{!v.searchLanguageByString}" updateOn="keyup" /> 
+							<lightning:datatable data="{! v.mydata }"
+								columns="{! v.mycolumns }"
+								keyField="Id"
+								onrowselection="{! c.getSelectedName }"
+								onheaderaction="{! c.handleHeaderAction }"
+								onrowaction="{! c.handleLangRowAction }"
+								 />
+							</div>
+							
+						</div>
+						<div class="slds-col slds-size_3-of-12">
+							<div class="slds-box">
+								<!-- <lightning:input name="input" aura:id="searchTitle" value="" label="Enter search string" onblur="{!c.searchTopic }" /> -->
+								<ui:inputText aura:id="searchTitle" value="{!v.searchTitleByString }" updateOn="keyup" /> 
+								<lightning:datatable data="{! v.topicData }"
+									aura:id="searchTitleTable"
+									columns="{! v.topicColumns }"
+									keyField="Id"
+									hideCheckboxColumn="false"
+									onrowaction="{! c.handleRowAction }"
+									onrowselection="{! c.handleRowSelectionInTopicTable }"
+									 />
+							</div>
+								
+							</div>
+							<div class="slds-col slds-size_6-of-12 ">
+								<div class="slds-box" style="{! 'background:' + 'white' }" aura:id="messageBody">
+									{!v.lastSelectedTopicTitle} &nbsp;&nbsp;&nbsp;
+									 <aura:if isTrue="{! v.showRecordSavingIcon == 1}">
+									<img src="{!$Resource.save_png}" width="10" align="top"/>
+									</aura:if>
+									<aura:if isTrue="{! v.showRecordErrorIcon == 1}">
+									<img src="{!$Resource.error}" width="10" align="top"/>
+									</aura:if>
+									<br/>
+
+									<!-- {!v.newTopic.Name}
+									<br/>
+									{!v.simpleNewTopic.Name}
+									<br/>
+									{!v.simpleNewTopic.sobjectType} {!v.newTopic.sobjectType}
+									<br/>
+									{!v.simpleNewTopic.Description__c} -->
+									<!-- <lightning:formattedText aura:id="topicDescription" class="" linkify="false" title=""  value="" /> -->
+									<ui:inputTextArea aura:id="topicDescription" value="{!v.simpleNewTopic.Description__c}" cols="90"
+										rows="30" updateOn='keyup'/>
+									<lightning:button label="Save Description" onclick="{!c.handleTopicSaveRecord}"
+                   variant="brand" class="slds-m-top_medium"/>
+
+                   <!-- Display Lightning Data Service errors, if any -->
+    <aura:if isTrue="{!not(empty(v.newTopicError))}">
+        <div class="recordError">
+            {!v.newTopicError}</div>
+    </aura:if>
+								</div>
+							</div>
+						</div>
+					</aura:component>

@@ -1,0 +1,27 @@
+<template>
+    {title}
+    <div class="slds-box slds-theme_default" >
+        <lightning-radio-group padding="around-small" name="topicOptionsGroup" label="Topic Option"
+            options={topicOptions} value={topicOption}
+            onchange={handleTopicOptionChange} type="button" variant = "label-hidden"></lightning-radio-group>
+    </div>
+    <div class="slds-box slds-theme_default">
+        <template if:true={viewTopic}>
+            <lightning-formatted-text linkify name="viewTextArea" value={description} label="Description">
+            </lightning-formatted-text>
+        </template>
+        <template if:true={editTopic}>
+            <lightning-input label="Topic title" variant="label-hidden" placeholder="Topic title" type="text"
+                value={title} onblur={handleTitleChange}>
+            </lightning-input>
+            <lightning-textarea padding="around-small" name="editTextArea" value={description} label="Description"
+                onblur={handleDescriptionChange} >
+            </lightning-textarea>
+        </template>
+        <template if:true={newTopic}>
+            To DO: New Topic Handling
+        </template>
+    </div>
+    <!-- <textarea name="Topic Description" cols="90" rows="30"
+       onblur={handleDescriptionChange}> {description} </textarea> -->
+</template>

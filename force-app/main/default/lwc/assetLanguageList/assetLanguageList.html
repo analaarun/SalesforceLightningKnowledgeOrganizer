@@ -1,0 +1,25 @@
+<template>
+    <!-- {record} -->
+    <template if:true={error}>
+        <c-error-panel errors={error}></c-error-panel>
+    </template>
+    <div class="slds-box slds-theme_default">
+        <lightning-button padding="around-small" variant="brand-outline" label="Refresh" title="Primary action"
+            onclick={handleRefreshLanguage} class="slds-m-left_x-small">
+        </lightning-button>
+        <lightning-input padding="around-small" label="Search Term" variant="label-hidden" placeholder="Search by Name"
+            type="text"
+            value={searchTerm} onchange={handleSearchChange}>
+        </lightning-input>
+    </div>
+    <div class="slds-m-around_small">
+        <template if:true={languages}>
+            <template for:each={languages} for:item="language">
+                <lightning-button key={language.Id} padding="around-small" variant="brand-outline"
+                    label={language.Label__c}
+                    title="Primary action" value={language.Id} onclick={handleClick} class="slds-m-left_x-small">
+                </lightning-button>
+            </template>
+        </template>
+    </div>
+</template>

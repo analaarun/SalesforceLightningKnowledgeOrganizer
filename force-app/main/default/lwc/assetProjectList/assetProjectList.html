@@ -1,0 +1,35 @@
+<template>
+    <div class="slds-box slds-theme_default">
+        <template if:true={error}>
+            <c-error-panel errors={error}></c-error-panel>
+        </template>
+        <lightning-radio-group padding="around-small" name="projectOptionsGroup" label="Project Option"
+            options={projectOptions} value={projectOption} onchange={handleProjectOptionChange} type="radio"
+            variant="label-hidden">
+        </lightning-radio-group>
+        <template if:true={newProject}>
+            <div class="slds-box slds-theme_default">
+                <lightning-input label="New Topic" variant="label-hidden" placeholder="New" type="text"
+                    onchange={handleProjectNameChange} value={newProjectName}>
+                </lightning-input>
+                <br />
+                <lightning-button padding="around-small" variant="brand-outline" label="Save" title="Primary action"
+                    onclick={handleSaveProjectClick} class="slds-m-left_x-small">
+                </lightning-button>
+            </div>
+
+        </template>
+        <lightning-input label="Search Term" variant="label-hidden" placeholder="Search by Name" type="text" 
+            value={searchTerm} onchange={handleSearchChange}>
+        </lightning-input>
+    </div>
+    <div class="slds-m-around_small">
+        <template if:true={projects}>
+            <template for:each={projects} for:item="project">
+                <lightning-button key={project.Id} padding="around-small" variant="brand-outline" label={project.Label__c}
+                    title="Primary action" value={project.Id} onclick={handleClick} class="slds-m-left_x-small">
+                </lightning-button>
+            </template>
+        </template>
+    </div>
+</template>

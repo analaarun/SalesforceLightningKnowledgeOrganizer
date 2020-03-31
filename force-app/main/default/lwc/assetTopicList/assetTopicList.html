@@ -1,0 +1,46 @@
+<template>
+    <div class="slds-box slds-theme_default">
+        <lightning-radio-group padding="around-small" name="topicOptionsGroup" label="Topic Option"
+            options={topicOptions} value={topicOption} onchange={handleTopicOptionChange} type="button"
+            variant="label-hidden">
+        </lightning-radio-group>
+        <!-- <template if:true={searchTopic}>
+            Selected Language Id: {languageId}
+            <lightning-input label="Search Term" variant="label-hidden" placeholder="Search by Name" type="text"
+                value={searchTerm} onchange={handleSearchChange}>
+            </lightning-input>
+            Selected Topic Id: {selectedTopicId}
+        </template> -->
+        <template if:true={newTopic}>
+            <div class="slds-box slds-theme_default">
+                <!-- To Do New Topic <br /> -->
+                <!-- Selected Language Id: {languageId} -->
+                <lightning-input label="New Topic" variant="label-hidden" placeholder="Enter New Name" type="text"
+                    onchange={handleTopicNameChange}
+                    value={newTopicName}>
+                </lightning-input>
+                <br />
+                <lightning-button padding="around-small" variant="brand-outline" label="Save" title="Primary action"
+                    onclick={handleSaveTopicClick} class="slds-m-left_x-small">
+                </lightning-button>
+            </div>
+
+        </template>
+        <!-- Selected Language Id: {languageId} -->
+        <lightning-input label="Search Term" variant="label-hidden" placeholder="Search by Name" type="text"
+            value={searchTerm} onchange={handleSearchChange}>
+        </lightning-input>
+        <!-- Selected Topic Id: {selectedTopicId} -->
+
+    </div>
+
+    <div class="slds-m-around_small">
+        <template if:true={topics}>
+            <template for:each={topics} for:item="topic">
+                <lightning-button key={topic.Id} padding="around-small" variant="brand-outline" label={topic.Label__c}
+                    title="Primary action" value={topic.Id} onclick={handleClick} class="slds-m-left_x-small">
+                </lightning-button>
+            </template>
+        </template>
+    </div>
+</template>

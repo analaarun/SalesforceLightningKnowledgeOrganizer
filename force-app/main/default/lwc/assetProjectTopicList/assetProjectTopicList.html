@@ -1,0 +1,46 @@
+<template>
+    <div class="slds-box slds-theme_default">
+        <template if:true={error}>
+            <c-error-panel errors={error}></c-error-panel>
+        </template>
+        <lightning-radio-group padding="around-small" name="projectTopicOptionsGroup" label="Project Topic Option"
+            options={projectTopicOptions} value={projectTopicOption} onchange={handleProjectTopicOptionChange}
+            type="button"
+            variant="label-hidden">
+        </lightning-radio-group>
+        <template if:true={newProjectTopic}>
+            <div class="slds-box slds-theme_default">
+                <lightning-record-edit-form object-api-name="Topic__c">
+                    <div class="slds-m-around_medium">
+                        <lightning-input-field field-name='Language__c' onchange={handleLanguageLookup}></lightning-input-field>
+                    </div>
+                </lightning-record-edit-form>
+                <lightning-input label="Search Term" variant="label-hidden" placeholder="Search by Name" type="text"
+                    value={searchTopicTerm} onchange={handleSearchTopicChange}>
+                </lightning-input>
+                <lightning-dual-listbox name="Topics" variant="label-hidden" label="Select Topics"
+                    source-label="Available" class="slds-wrap"
+                    selected-label="Selected"  options={topicsAvailable}
+                    value={topicsSelected} onchange={handleSelectTopicsChange}></lightning-dual-listbox>
+                <lightning-button padding="around-small" variant="brand-outline" label="Add" title="Primary action"
+                    onclick={handleSaveProjectTopicClick} class="slds-m-left_x-small">
+                </lightning-button>
+            </div>
+        </template>
+        <lightning-input label="Search Term" variant="label-hidden" placeholder="Search by Name" type="text"
+            value={searchTerm} onchange={handleSearchChange}>
+        </lightning-input>
+    </div>
+
+    <div class="slds-m-around_small">
+        <template if:true={projectTopics}>
+            <template for:each={projectTopics} for:item="projectTopic">
+                <lightning-button key={projectTopic.Id} padding="around-small" variant="brand-outline" label={projectTopic.Topic__r.Label__c}
+                    title="Primary action" value={projectTopic.Id} onclick={handleClick} class="slds-m-left_x-small">
+                </lightning-button>
+            </template>
+        </template>
+    </div>
+
+
+</template>

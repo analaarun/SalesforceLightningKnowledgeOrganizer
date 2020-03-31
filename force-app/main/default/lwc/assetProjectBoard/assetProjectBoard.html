@@ -1,0 +1,31 @@
+<template>
+    <div class="c-container">
+        <lightning-layout multiple-rows="true">
+
+            <lightning-layout-item padding="horizontal-small" size="12">
+                <lightning-layout>
+                    <lightning-layout-item padding="around-small" size="2">
+                        <div class="slds-box slds-theme_default">
+                        <c-asset-project-list onselectproject={handleSelectProject}></c-asset-project-list>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item padding="around-small" size="5">
+                        <div class="slds-box slds-theme_default">
+                            <c-asset-project-topic-list onselectprojecttopic={handleSelectProjectTopic}
+                                project-id={projectId}>
+                            </c-asset-project-topic-list>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item padding="around-small" size="5">
+                        <div class="slds-box slds-theme_default">
+                            <c-asset-project-topic-description-list onupdateselected={handleUpdateSelected}
+                                ondeleteprojecttopic={handleDeleteProjectTopicEvent} project-topic={projectTopic}>
+                            </c-asset-project-topic-description-list>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+
+        </lightning-layout>
+    </div>
+</template>

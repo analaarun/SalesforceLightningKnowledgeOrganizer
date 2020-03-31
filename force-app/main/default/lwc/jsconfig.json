@@ -1,0 +1,47 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c/assetTopicContent": [
+                "assetTopicContent/assetTopicContent.js"
+            ],
+            "c/assetProjectTopicDescriptionList": [
+                "assetProjectTopicDescriptionList/assetProjectTopicDescriptionList.js"
+            ],
+            "c/assetTopicList": [
+                "assetTopicList/assetTopicList.js"
+            ],
+            "c/errorPanel": [
+                "errorPanel/errorPanel.js"
+            ],
+            "c/assetProjectTopicList": [
+                "assetProjectTopicList/assetProjectTopicList.js"
+            ],
+            "c/assetProjectList": [
+                "assetProjectList/assetProjectList.js"
+            ],
+            "c/assetProjectBoard": [
+                "assetProjectBoard/assetProjectBoard.js"
+            ],
+            "c/assetLwcApp": [
+                "assetLwcApp/assetLwcApp.js"
+            ],
+            "c/assetLanguageList": [
+                "assetLanguageList/assetLanguageList.js"
+            ],
+            "c/ldsUtils": [
+                "ldsUtils/ldsUtils.js"
+            ]
+        }
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}

@@ -1,0 +1,23 @@
+<template>
+    <template if:true={error}>
+        <c-error-panel errors={error}></c-error-panel>
+    </template>
+    <div class="c-container">
+        <lightning-layout>
+            <lightning-layout-item padding="around-small">
+            <lightning-input type="checkbox-button" label="Selected" variant="label-hidden" name="selected" checked onchange={handleSelectedClick}>
+            </lightning-input>
+            </lightning-layout-item>
+             <lightning-layout-item padding="around-small">
+            <lightning-button padding="around-small" variant="destructive-text" label="Remove" title="Primary action"
+                onclick={handleRemoveProjectTopicClick} class="slds-m-left_x-small">
+            </lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+    {title}
+    <div class="slds-box slds-theme_default">
+        <lightning-formatted-text linkify name="viewTextArea" value={description} label="Description">
+        </lightning-formatted-text>
+    </div>
+</template>

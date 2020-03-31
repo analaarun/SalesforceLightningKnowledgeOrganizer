@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>AssetController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>AssetsPageLWC</members>
+        <members>AssetsProjectLWC</members>
+        <members>AssetsPage</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>AssetComponent</members>
+        <members>AssetProjectLightningOut</members>
+        <members>AssetsLightningOut</members>
+        <members>AssetsLwcforLighntingout</members>
+        <members>AssetApp</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>assetLanguageList</members>
+        <members>assetLwcApp</members>
+        <members>assetProjectBoard</members>
+        <members>assetProjectList</members>
+        <members>assetProjectTopicDescriptionList</members>
+        <members>assetProjectTopicList</members>
+        <members>assetTopicContent</members>
+        <members>assetTopicList</members>
+        <members>errorPanel</members>
+        <members>ldsUtils</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>Language__c</members>
+        <members>Topic__c</members>
+        <members>Project__c</members>
+        <members>Project_Topic__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Language__c-Language Layout</members>
+        <members>Topic__c-Topic Layout</members>
+        <members>Project__c-Project Board Layout</members>
+        <members>Project_Topic__c-Project Topic Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Asset_Project</members>
+        <members>Asset_LWC</members>
+        <members>AssetsApp</members>
+        <members>Language__c</members>
+        <members>Topic__c</members>
+        <members>Project__c</members>
+        <members>Project_Topic__c</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>save_png</members>
+        <members>error</members>
+        <name>StaticResource</name>
+    </types>
+    <types>
+        <members>Assets_Lightning</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Asset_Project</members>
+        <members>Asset_LWC</members>
+        <name>FlexiPage</name>
+    </types>
+    <version>48.0</version>
+</Package>

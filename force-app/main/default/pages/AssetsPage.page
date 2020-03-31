@@ -1,0 +1,17 @@
+<apex:page sidebar="false" showHeader="true" >
+<apex:includeLightning />
+
+
+<div id="lightning" />
+
+<script>
+$Lightning.use("c:AssetsLightningOut", function() {
+$Lightning.createComponent("c:AssetComponent",
+{ },
+"lightning",
+function(cmp) {
+// do some stuff
+});
+});
+</script>
+</apex:page>
