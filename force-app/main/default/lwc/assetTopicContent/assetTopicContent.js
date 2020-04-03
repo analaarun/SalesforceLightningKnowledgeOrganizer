@@ -9,7 +9,8 @@ import {
 } from 'lightning/platformShowToastEvent';
 import {
     getRecord,
-    updateRecord
+    updateRecord,
+    deleteRecord
 } from 'lightning/uiRecordApi';
 import DESCRIPTION_FIELD from '@salesforce/schema/Topic__c.Description__c';
 import ID_FIELD from '@salesforce/schema/Topic__c.Id';
@@ -24,7 +25,6 @@ export default class AssetTopicContent extends LightningElement {
     @track topicOption = 'viewTopic';
     @track viewTopic = true;
     @track editTopic = false;
-    @track newTopic = false;
 
     get topicOptions() {
         return [{
@@ -35,10 +35,10 @@ export default class AssetTopicContent extends LightningElement {
                 label: 'Edit',
                 value: 'editTopic'
             },
-            // {
-            //     label: 'New',
-            //     value: 'newTopic'
-            // },
+            {
+                label: 'Delete',
+                value: 'deleteTopic'
+            },
         ];
     }
 
@@ -127,17 +127,34 @@ export default class AssetTopicContent extends LightningElement {
             case 'viewTopic':
                 this.viewTopic = true;
                 this.editTopic = false;
-                this.newTopic = false;
                 break;
             case 'editTopic':
                 this.viewTopic = false;
                 this.editTopic = true;
-                this.newTopic = false;
                 break;
             default:
-                this.viewTopic = false;
+                this.viewTopic = true;
                 this.editTopic = false;
-                this.newTopic = true;
+                this.deleteTopic();
         }
+    }
+
+    deleteTopic() {
+        if ((this.recordId == undefined) || (this.recordId == '')){
+            return;
+        }
+        deleteRecord(this.recordId)
+            .then(() => {
+                this.description = undefined;
+                this.title = undefined;
+                const deleteTopicEvent = new CustomEvent('deletetopic', {
+                    detail: 'deleted'
+                });
+                this.dispatchEvent(deleteTopicEvent);
+                this.error = undefined;
+            })
+            .catch(error => {
+                this.error = error;
+            });
     }
 }

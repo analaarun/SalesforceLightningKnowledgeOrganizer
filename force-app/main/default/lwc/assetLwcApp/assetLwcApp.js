@@ -49,4 +49,8 @@ export default class AssetLwcApp extends LightningElement {
         this.template.querySelector('c-asset-topic-list').refreshTopicsCache();
     }
 
+    handleDeleteTopic() {
+        this.template.querySelector('c-asset-topic-list').refreshTopicsCache();
+    }
+
 }

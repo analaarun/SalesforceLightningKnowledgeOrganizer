@@ -1,5 +1,19 @@
 <template>
-    {title}
+    <header class="slds-builder-header">
+        <div class="slds-builder-header__item">
+            <div class="slds-builder-header__item-label slds-media slds-media_center">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-utility-builder slds-current-color">
+                        <lightning-icon icon-name="utility:light_bulb" alternative-text="Utility light_bulb" title="light_bulb"
+                            size="small"></lightning-icon>
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    {title}
+                </div>
+            </div>
+        </div>
+    </header>
     <div class="slds-box slds-theme_default" >
         <lightning-radio-group padding="around-small" name="topicOptionsGroup" label="Topic Option"
             options={topicOptions} value={topicOption}
@@ -9,6 +23,7 @@
         <template if:true={viewTopic}>
             <lightning-formatted-text linkify name="viewTextArea" value={description} label="Description">
             </lightning-formatted-text>
+            <!-- {description} -->
         </template>
         <template if:true={editTopic}>
             <lightning-input label="Topic title" variant="label-hidden" placeholder="Topic title" type="text"
@@ -17,9 +32,6 @@
             <lightning-textarea padding="around-small" name="editTextArea" value={description} label="Description"
                 onblur={handleDescriptionChange} >
             </lightning-textarea>
-        </template>
-        <template if:true={newTopic}>
-            To DO: New Topic Handling
         </template>
     </div>
     <!-- <textarea name="Topic Description" cols="90" rows="30"
